@@ -1,15 +1,23 @@
 <center>
-<div class="user-trips">
-<%= render 'layouts/header' %>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <h1><%= image_tag current_user.image %><br><%= @user.name %>
-   </h1>
-</p>
-<br>
-<h4>Your Wardrobe</h4>
-<br><br>
-   </div>
+  <header>
+    <%= render 'layouts/header' %>
+    <p>
+      <h3><%= @user.name %></h3>
+    </p>
+  </header>
+  <nav>
+    <%= link_to "Your Wardrobe", current_user%>
+    <a href="/outfit">Your Outfits</a>
+    <a href="/like">Your Likes</a>
+  </nav>
+  <wrapper>
+    <div class="wardrobe">
+      <div class="shirt" id="wardrobe_shirt">
+      </div>
+      <div class="pant" id="wardrobe_pant">
+      </div>
+      <div class="shoe" id="wardrobe_shoe">
+      </div>
+    </div>
+  </wrapper>
 </center>

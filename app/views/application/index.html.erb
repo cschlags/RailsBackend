@@ -1,28 +1,15 @@
 
 <center>
   <div id="index-cover" class="index-cover">
-<div id="none">
-<p><span>.</span></p>
-</div>
-<h1>Please Signin</h1>
-
-    <% if !current_user %>
-      <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
+    <h1>Please Signin</h1>
+      <% if !current_user %>
+        <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
       <% else %>
-      <p><%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", current_user %></p>
-      <p>Happy travels!</p>
-    <% end %>
-     </div>
-<!-- <div class="divider">
-<h1>sadasd</h1>
-</div>   --> 
-
-<!-- SECOND SECTION  -->
-<!-- <div class="index-description">
-<center> -->
-<!-- <div class="user-trips"> -->
-<!-- 
-
-<p id="notice"><%#= notice %></p> -->
+        <p>
+          <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", current_user %>
+        </p>
+      <% end %>
+  </div>
+</center>
 
 

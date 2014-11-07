@@ -1,3 +1,27 @@
-<h1>Your Outfits</h1>
-<a href="/like" data-toggle="dropdown">Your Likes</a>
-<a href="/wardrobe" data-toggle="dropdown">Your Wardrobe</a>
+<center>
+  <header>
+    <%= render 'layouts/header' %>
+    <p>
+      <h3><%= current_user.name %></h3>
+    </p>
+  </header>
+  <nav>
+    <%= link_to "Your Wardrobe", current_user%>
+    <a href="/outfit">Your Outfits</a>
+    <a href="/like">Your Likes</a>
+  </nav>
+  <wrapper>
+    <div class="outfits">
+      <div class="outfit" id="outfit_1">
+      </div>
+      <div class="outfit" id="outfit_2">
+      </div>
+      <div class="outfit" id="outfit_3">
+      </div>
+      <div class="outfit" id="outfit_4">
+      </div>
+      <div class="outfit" id="outfit_5">
+      </div>
+    </div>
+  </wrapper>
+</center>

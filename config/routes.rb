@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     resources :like
     resources :outfit
 
-    get 'auth/:provider/callback', to: 'sessions#create'
-    get 'auth/failure', to: redirect('/')
-    get 'signout', to: 'sessions#destroy', as: 'signout'
+  get '/auth/facebook', as: "facebook_login"
+  match 'auth/facebook/callback', to: 'sessions#create', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  get 'logout' => 'sessions#destroy', :as => :logout
 
 end
