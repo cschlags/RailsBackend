@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -31,3 +29,24 @@ gem 'omniauth-facebook', '~> 1.4.1'
 gem "paperclip"
 gem 'aws-sdk'
 
+group :test, :development do
+  gem "rspec-rails"
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "better_errors"
+  gem "sprockets_better_errors"
+  gem "binding_of_caller"
+  gem "factory_girl_rails"
+  gem "simplecov"
+  gem "database_cleaner"
+  gem "sqlite3"
+  gem "pry"
+  gem "guard-rspec", require: false
+  gem "thin"
+end
+
+group :production do
+  gem "pg"
+  gem "google-analytics-rails"
+  gem "rails_12factor"
+end
