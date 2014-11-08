@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102171644) do
+ActiveRecord::Schema.define(version: 20141108024706) do
+
+  create_table "api_users", force: true do |t|
+    t.string   "api_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "likes", force: true do |t|
     t.string   "user_uid"
