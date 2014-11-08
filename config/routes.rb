@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   get 'logout' => 'sessions#destroy', :as => :logout
 
+  namespace :api, path: '', constraints: {subdomain: 'api'} do
+    namespace :v1 do
+      resources :users
+    end
+  end
 end
