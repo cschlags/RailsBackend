@@ -45,3 +45,5 @@ group :production do
   gem "google-analytics-rails"
   gem "rails_12factor"
 end
+
+gem 'rails-api' , require: 'rails-api/action_controller/api'
