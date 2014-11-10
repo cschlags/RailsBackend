@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     @user = User.from_omniauth(env["omniauth.auth"])
     session[:current_user] = @user
     session[:user_id] = @user.id
-    redirect_to current_user, :notice => "Congrats, you're logged in!" 
+    redirect_to wardrobe_index_path, :notice => "Congrats, you're logged in!" 
   end
 
   # def new 

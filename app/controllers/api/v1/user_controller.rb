@@ -1,7 +1,9 @@
 class Api::V1::UserController < Api::ApiController
-  respond_to :json
+  include ActionController::MimeResponds
   def index
-    @users = User.all
-    respond_with @users
+    respond_to do |format|
+      @users = User.all
+      format.json { render json:@users}
+    end
   end
 end

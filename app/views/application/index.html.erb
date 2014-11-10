@@ -6,7 +6,7 @@
         <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
       <% else %>
         <p>
-          <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", current_user %>
+          <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", wardrobe_index_path %>
         </p>
       <% end %>
   </div>

@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(version: 20141108024706) do
   end
 
   create_table "likes", force: true do |t|
-    t.string   "user_uid"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "outfits", force: true do |t|
-    t.string   "user_uid"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20141108024706) do
   end
 
   create_table "wardrobes", force: true do |t|
-    t.string   "user_uid"
+    t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

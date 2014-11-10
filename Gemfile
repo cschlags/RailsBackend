@@ -27,7 +27,6 @@ gem 'omniauth-facebook'
 
 group :test, :development do
   gem "rspec-rails"
-  gem "capybara"
   gem "selenium-webdriver"
   gem "better_errors"
   gem "binding_of_caller"
