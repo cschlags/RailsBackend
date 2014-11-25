@@ -21,9 +21,15 @@ gem 'jquery-ui-rails'
 gem 'spring',        group: :development
 
 # login
-gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+# Amazon S3
+gem 'paperclip'
+gem 'aws-sdk'
+
+# Makes forms prettier
+# gem 'simpleform'
 
 group :test, :development do
   gem "rspec-rails"

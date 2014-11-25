@@ -1,15 +1,9 @@
-
-<center>
-  <div id="index-cover" class="index-cover">
-    <h1>Please Signin</h1>
-      <% if !current_user %>
-        <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
-      <% else %>
-        <p>
-          <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", wardrobe_index_path %>
-        </p>
-      <% end %>
-  </div>
-</center>
-
-
+<!-- index page shows the main page: login/signup, about, videos of the product, icon-->
+<wrapper>
+  <!-- header which will give the navbar for the product -->
+ <%= render 'application/header' %>
+ <!-- have the nav bar setup like canary with the automatic slide up and the little triangle at the bottom of the setup -->
+ <!-- there should be a video screen, have iframe video come up like canary before the triangle -->
+ <!--  -->
+ 
+</wrapper>

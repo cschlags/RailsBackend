@@ -1,15 +1,7 @@
 <center>
   <header>
     <%= render 'layouts/header' %>
-    <p>
-      <h3><%= current_user.name %></h3>
-    </p>
   </header>
-  <nav>
-    <%= link_to "Your Wardrobe", wardrobe_index_path%>
-    <%= link_to "Your Outfits", outfit_index_path%>
-    <%= link_to "Your Likes", like_index_path%>
-  </nav>
   <wrapper>
     <div class="wardrobe">
       <div class="shirt" id="wardrobe_shirt">

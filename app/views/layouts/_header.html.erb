@@ -1,5 +1,16 @@
-<div class="navbar facebook">
-  <% if current_user %>
-    <%= link_to "LOG OUT", logout_path %>
-  <% end %>
-</div>
+<wrapper>
+  <div class="navbar facebook">
+    <h1><%= image_tag current_user.image %></h1>
+    <% if current_user %>
+      <%= link_to "LOG OUT", logout_path %>
+    <% end %>
+  </div>
+  <p>
+    <h3><%= link_to current_user.name, user_path%></h3>
+  </p>
+  <nav class="navbar user">
+    <%= link_to "Your Wardrobe", wardrobe_index_path%>
+    <%= link_to "Your Outfits", outfit_index_path%>
+    <%= link_to "Your Likes", like_index_path%>
+  </nav>
+</wrapper>
