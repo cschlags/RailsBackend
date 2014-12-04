@@ -1,5 +1,10 @@
-<div class="navbar facebook">
-  <% if current_user %>
-    <%= link_to "LOG OUT", logout_path %>
-  <% end %>
-</div>
+<nav>
+  <!-- icon -->
+  <a href="#"><%= image_tag "curateanalytics.png", width: "200"%></a>
+  <!-- to user page -->
+    <%= image_tag current_user.image %><%= current_user.name%>
+  <!-- facebook logout path -->
+    <% if current_user %>
+      <%= link_to "LOG OUT", logout_path %>
+    <% end %>
+</nav>
