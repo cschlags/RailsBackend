@@ -1,0 +1,10 @@
+<wrapper>
+  <%= render 'application/header'%>
+  <div class="signin">
+    <% if !current_user %>
+      <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
+    <% else %>
+      <p><%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", current_user %></p>
+    <%end%>
+  </div>
+</wrapper>

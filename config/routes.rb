@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   match 'auth/facebook/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   get 'logout' => 'sessions#destroy', :as => :logout
+  get 'signin' => 'application#signin', :as => :signin
+  get 'about' => 'application#about', :as => :about
 
   namespace :api do
     namespace :v1 do
