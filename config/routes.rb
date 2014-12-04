@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'work' => 'application#work', :as => :work
   get 'about' => 'application#about', :as => :about
 
-    resource :user
+    resources :user
     resources :wardrobe
     resources :like
     resources :outfit

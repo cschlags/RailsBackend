@@ -3,7 +3,7 @@
   <a href="#"><%= image_tag "curateanalytics.png", width: "200"%></a>
   <!-- to user page -->
     <%= image_tag current_user.image %>
-    <%= link_to "#{current_user.name}", user_path%>
+    <%= link_to "#{current_user.name}", current_user%>
   <!-- facebook logout path -->
     <% if current_user %>
       <%= link_to "LOG OUT", logout_path %>
