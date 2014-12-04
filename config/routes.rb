@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'signin' => 'application#signin', :as => :signin
   get 'about' => 'application#about', :as => :about
-
+  get 'work' => 'application#work', :as => :work
+  
   namespace :api do
     namespace :v1 do
       resources :user

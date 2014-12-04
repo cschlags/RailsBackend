@@ -1,8 +1,10 @@
 <nav>
   <!-- icon -->
   <a href="#"><%= image_tag "curateanalytics.png", width: "200"%></a>
-  <!-- about -->
-  <%=link_to "About", about_path%>
+  <!-- about company-->
+  <%= link_to "About Us", about_path%>
+  <!-- Work -->
+  <%= link_to "How It Works", work_path%>
   <!-- signin -->
   <% if !current_user %>
       <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>

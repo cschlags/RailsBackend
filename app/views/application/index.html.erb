@@ -1,14 +1,5 @@
-<center>
-  <div id="index-cover" class="index-cover">
-    <h1>Please Signin</h1>
-      <% if !current_user %>
-        <a href="/auth/facebook">Login</a>
-      <% else %>
-        <p>
-          <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", wardrobe_index_path %>
-        </p>
-      <% end %>
-  </div>
-</center>
+<wrapper>
+  <%= render "application/header.html.erb"%>
+</wrapper>
 
 
