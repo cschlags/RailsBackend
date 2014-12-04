@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root "application#index"
+  root :to => "application#index"
+  get 'work' => 'application#work', :as => :work
+  get 'about' => 'application#about', :as => :about
 
-    resources :user
+    resource :user
     resources :wardrobe
     resources :like
     resources :outfit
@@ -11,8 +13,6 @@ Rails.application.routes.draw do
   match 'auth/failure', to: redirect('/'), via: [:get, :post]
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'signin' => 'application#signin', :as => :signin
-  get 'about' => 'application#about', :as => :about
-  get 'work' => 'application#work', :as => :work
   
   namespace :api do
     namespace :v1 do

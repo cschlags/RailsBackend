@@ -1,27 +1,15 @@
+<wrapper>
+  <%= render 'layouts/header' %>
+</wrapper>
 <center>
-  <header>
-    <%= render 'layouts/header' %>
-    <p>
-      <h3><%= current_user.name %></h3>
-    </p>
-  </header>
   <nav>
     <%= link_to "Your Wardrobe", wardrobe_index_path%>
     <%= link_to "Your Outfits", outfit_index_path%>
     <%= link_to "Your Likes", like_index_path%>
   </nav>
-  <wrapper>
-    <div class="outfits">
-      <div class="outfit" id="outfit_1">
-      </div>
-      <div class="outfit" id="outfit_2">
-      </div>
-      <div class="outfit" id="outfit_3">
-      </div>
-      <div class="outfit" id="outfit_4">
-      </div>
-      <div class="outfit" id="outfit_5">
-      </div>
+  INDEX
+  <div class="box">
+    <div class="outfit">
     </div>
-  </wrapper>
+  </div>
 </center>

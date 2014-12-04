@@ -1,6 +1,6 @@
 <nav>
   <!-- icon -->
-  <a href="#"><%= image_tag "curateanalytics.png", width: "200"%></a>
+  <%= image_tag "curateanalytics.png", width: "200"%></a>
   <!-- about company-->
   <%= link_to "About Us", about_path%>
   <!-- Work -->
@@ -9,6 +9,6 @@
   <% if !current_user %>
       <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
     <% else %>
-      <p><%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", current_user %></p>
+      <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", wardrobe_index_path%>
     <%end%>
 </nav>
