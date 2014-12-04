@@ -1,15 +1,14 @@
-<!-- index page shows the main page: login/signup, about, videos of the product, icon-->
-<wrapper>
-  <!-- header which will give the navbar for the product -->
- <%= render 'application/header' %>
- <!-- have the nav bar setup like canary with the automatic slide up and the little triangle at the bottom of the setup -->
- <!-- there should be a video screen, have iframe video come up like canary before the triangle -->
- <!--  -->
-</wrapper>
-<!-- CURATE ANALYTICS ICON top left -->
-    <!-- present on all pages, brings you back to the main page -->
-<!-- HOW IT WORKS main right, sub left -->
-<!-- ABOUT THE COMPANY/ABOUT TEAM main right, sub center -->
-    <!-- contains simpleform --><!-- application? or contact? -->
-<!-- SIGNIN/REGISTER main right, sub right -->
-<!-- 
+<center>
+  <div id="index-cover" class="index-cover">
+    <h1>Please Signin</h1>
+      <% if !current_user %>
+        <a href="/auth/facebook">Login</a>
+      <% else %>
+        <p>
+          <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", wardrobe_index_path %>
+        </p>
+      <% end %>
+  </div>
+</center>
+
+

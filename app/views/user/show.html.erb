@@ -1,6 +1,23 @@
 <center>
   <header>
     <%= render 'layouts/header' %>
+    <p>
+      <h3><%= @user.name %></h3>
+    </p>
   </header>
-  Yo man dis yo mothafucking user show page
+  <nav>
+    <%= link_to "Your Wardrobe", wardrobe_index_path%>
+    <%= link_to "Your Outfits", outfit_index_path%>
+    <%= link_to "Your Likes", like_index_path%>
+  </nav>
+  <wrapper>
+    <div class="wardrobe">
+      <div class="shirt" id="wardrobe_shirt">
+      </div>
+      <div class="pant" id="wardrobe_pant">
+      </div>
+      <div class="shoe" id="wardrobe_shoe">
+      </div>
+    </div>
+  </wrapper>
 </center>

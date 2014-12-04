@@ -1,18 +1,25 @@
 class SessionsController < ApplicationController
+
   def create
     @user = User.from_omniauth(env["omniauth.auth"])
     session[:current_user] = @user
     session[:user_id] = @user.id
-    redirect_to like_index_path, :notice => "Congrats, you're logged in!" 
+    redirect_to wardrobe_index_path, :notice => "Congrats, you're logged in!" 
   end
+
+  # def new 
+  #   session[:return_to] = request.referer
+  # end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "You've logged out"
+    redirect_to root_url #, :notice => "Signed out!"
   end
 
   protected
+
     def auth_hash
       request.env['omniauth.auth'] 
     end
+
 end
