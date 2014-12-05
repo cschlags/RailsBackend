@@ -23,6 +23,7 @@ gem 'spring',        group: :development
 # login
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'devise'
 
 # Amazon S3
 gem 'paperclip'
