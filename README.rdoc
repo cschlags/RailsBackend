@@ -8,3 +8,14 @@ Add s3 for the pictures
 If facebook doens't work for heroku run heroku run rake db:migrate --account personal
 
 Devise -- https://github.com/mohitjain/social-login-in-rails/tree/master/app
+
+https://github.com/plataformatec/devise/wiki/Extensions
+
+https://www.railstutorial.org/book/modeling_users
+
+https://gist.github.com/rdetert/848721
+
+https://github.com/intridea/omniauth
+
+http://devise.plataformatec.com.br/
+
