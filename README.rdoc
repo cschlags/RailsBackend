@@ -1,8 +1,9 @@
 To Do:
 API -- see trello
-Design frontpage for the application-index with signin button on the top right
- or a welcome back. there should be a "not currentuser.name"
-What is the best thing to do?
+Design frontpage for the application-index with signin button or logout which is permanent
 Design user pages, wardrobe, like, and outfit page
 Create Edit user page with simple form
 Add s3 for the pictures
+
+If facebook doens't work for heroku run heroku run rake db:migrate --account personal
+

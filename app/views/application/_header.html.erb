@@ -6,9 +6,5 @@
   <!-- Work -->
   <%= link_to "How It Works", work_path%>
   <!-- signin -->
-  <% if !current_user %>
-      <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
-    <% else %>
-      <%= link_to "Welcome back, #{current_user.name.split(" ")[0]}!", wardrobe_index_path%>
-    <%end%>
+  <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
 </nav>
