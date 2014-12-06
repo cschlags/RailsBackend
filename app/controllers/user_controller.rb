@@ -5,6 +5,9 @@ class UserController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    unless current_user.id == params[:id].to_i
+      redirect_to root_url
+    end
   end
 
   # GET /users/1
@@ -13,11 +16,6 @@ class UserController < ApplicationController
     unless current_user.id == params[:id].to_i
       redirect_to root_url
     end
-  end
-
-  # GET /users/new
-  def new
-    redirect_to root_url
   end
 
   # GET /users/1/edit
