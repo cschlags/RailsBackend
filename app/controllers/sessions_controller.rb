@@ -4,11 +4,11 @@ class SessionsController < ApplicationController
     @user = User.from_omniauth(env["omniauth.auth"])
     session[:current_user] = @user
     session[:user_id] = @user.id
-    redirect_to wardrobe_index_path, :notice => "Congrats, you're logged in!" 
+    redirect_to wardrobe_index_path 
   end
   def destroy
     session[:user_id] = nil
-    redirect_to root_url #, :notice => "Signed out!"
+    redirect_to root_url
   end
 
   protected
