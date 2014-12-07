@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :likes
-  has_many :outfits
+  has_one :like
+  has_one :outfit
   has_one :wardrobe
   
   def self.from_omniauth(auth_hash)
