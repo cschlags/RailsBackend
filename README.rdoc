@@ -4,6 +4,9 @@ If you need to get heroku changed
   heroku pg:reset DATABASE --account personal
   heroku run rake db:migrate --account personal
 
+If rails server is over running do 
+  lsof -wni tcp:3000
+  killall ruby
 
 Devise -- https://github.com/mohitjain/social-login-in-rails/tree/master/app
 
