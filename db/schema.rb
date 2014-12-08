@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141108024706) do
     t.string   "shirt_size"
     t.string   "preferred_shirt_fit"
     t.string   "shoe_size"
+    t.integer  "wardrobe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

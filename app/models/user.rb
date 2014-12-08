@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   
   def self.from_omniauth(auth_hash)
     where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      # create_wardrobe = user.new_record?
       user.provider = auth_hash.provider
       user.uid = auth_hash.uid
       user.name = auth_hash.info.name
