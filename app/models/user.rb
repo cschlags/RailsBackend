@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_one :like
   has_one :outfit
   has_one :wardrobe
-  after_create :create_wardrobe, :create_outfit
+  after_create :create_wardrobe, :create_outfit, :create_like
   
   def self.from_omniauth(auth_hash)
     where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
