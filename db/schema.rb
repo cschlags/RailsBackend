@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108024706) do
+ActiveRecord::Schema.define(version: 20141209070651) do
 
   create_table "api_users", force: true do |t|
     t.string   "api_key"
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 20141108024706) do
     t.string   "shirt_size"
     t.string   "preferred_shirt_fit"
     t.string   "shoe_size"
-    t.integer  "wardrobe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "preferences"
   end
 
   create_table "wardrobes", force: true do |t|
