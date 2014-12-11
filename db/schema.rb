@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141209081746) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "curate_user_id"
     t.string   "provider"
     t.string   "uid"
     t.string   "name"

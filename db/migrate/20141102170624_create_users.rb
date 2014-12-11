@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
+      t.string :curate_user_id
       t.string :provider
       t.string :uid
       t.string :name
