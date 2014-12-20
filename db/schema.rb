@@ -11,12 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209081746) do
+ActiveRecord::Schema.define(version: 20141219021822) do
 
   create_table "api_users", force: true do |t|
     t.string   "api_key"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "batches", force: true do |t|
+    t.string "folder"
+    t.string "batch_number"
+    t.string "url"
   end
 
   create_table "likes", force: true do |t|

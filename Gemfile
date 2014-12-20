@@ -26,8 +26,9 @@ gem 'omniauth-facebook'
 gem 'devise'
 
 # Amazon S3
-gem 'paperclip'
-gem 'aws-sdk'
+gem "paperclip"
+gem "aws-sdk"
+gem 'aws-s3'
 
 # Makes forms prettier
 # gem 'simpleform'

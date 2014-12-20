@@ -8,3 +8,8 @@ If rails server is over running do
   lsof -wni tcp:3000
   killall ruby
 
+create hash for uid => id
+pictures
+api login
+
+access_key_id='AKIAIES3KIS3P7UPOU2A' secret_access_key='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' rails s

@@ -1,12 +1,12 @@
 Rails.application.configure do
   FACEBOOK_ID = "752609968166675"
   FACEBOOK_SECRET = "eced68f9335bd739f59451dbf5dbeab9"
-    config.paperclip_defaults = {
+  config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV['S3_BUCKET_NAME'],
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      :bucket => ENV['curateanalytics'],
+      :access_key_id => ENV['AKIAIES3KIS3P7UPOU2A'],
+      :secret_access_key => ENV['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']
     }
   }
   # Settings specified here will take precedence over those in config/application.rb.

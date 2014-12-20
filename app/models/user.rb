@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth_hash)
     where(auth_hash.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.curate_user_id = "curate"+rand(9).to_s+rand(9).to_s+rand(9).to_s+
-    rand(9).to_s+rand(9).to_s
+        rand(9).to_s+rand(9).to_s
       user.provider = auth_hash.provider
       user.uid = auth_hash.uid
       user.name = auth_hash.info.name

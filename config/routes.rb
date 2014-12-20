@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         resources :like
         resources :outfit
       end
+      resources :batch
     end
   end
 end
