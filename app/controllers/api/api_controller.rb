@@ -1,8 +1,12 @@
 class Api::ApiController < ActionController::API
+
   # private
   # def authenticate
-  #   authenticate_or_request_with_http_token do |token, options|
-  #     @api_user = ApiUser.where(api_key: token).first
+  # @user = User.where(api_key: api_key).first if api_key
+ 
+  #   unless @user
+  #     head status: :unauthorized
+  #     return false
   #   end
   # end
 end

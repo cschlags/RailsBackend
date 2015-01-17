@@ -1,5 +1,6 @@
 class Api::V1::UserController < Api::ApiController
   include ActionController::MimeResponds
+  # before_action :authenticate
   def index
     respond_to do |format|
       @users = User.all
