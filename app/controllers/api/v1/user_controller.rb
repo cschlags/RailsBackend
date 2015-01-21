@@ -1,11 +1,9 @@
 class Api::V1::UserController < Api::ApiController
   include ActionController::MimeResponds
-  # before_action :authenticate
+  before_action :doorkeeper_authorize!
   def index
-    respond_to do |format|
-      @users = User.all
-      format.json { render json:@users }
-    end
+    user = User.find(doorkeeper_token.resource_owner_id)
+    format.json { render json:user }
   end
   def show
     respond_to do |format|

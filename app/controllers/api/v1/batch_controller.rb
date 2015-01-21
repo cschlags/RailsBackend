@@ -1,5 +1,6 @@
 class Api::V1::BatchController < Api::ApiController
   include ActionController::MimeResponds
+
   def index
     respond_to do |format|
       @batches = Batch.all

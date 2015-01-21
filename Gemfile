@@ -24,6 +24,7 @@ gem 'spring',        group: :development
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'devise'
+gem 'doorkeeper'
 
 # Amazon S3
 gem "paperclip"
