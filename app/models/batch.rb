@@ -1,14 +1,29 @@
 class Batch < ActiveRecord::Base
-  Obj = {:folder => [], :batch_number => [], :url => []}
+  serialize :folder, Hash
+  Obj = {}
   def access_bucket
     s3 = AWS::S3.new
     bucket = s3.buckets['curateanalytics']
     bucket.objects.each do |obj|
       if obj.key =~ /swipe batches/
         if obj.key =~ /jpg/
-          Obj[:folder] << sort_objs(obj.key)[0]
-          Obj[:batch_number] << sort_objs(obj.key)[1]
-          Obj[:url] << sort_objs(obj.key)[2]
+          newfolder = sort_objs(obj.key)[0]
+          newbatch =  sort_objs(obj.key)[1]
+          newurl = sort_objs(obj.key)[2]
+
+          if Obj.key?(newfolder)
+            if Obj[newfolder].key?(newbatch)
+              if Obj[newfolder][newbatch].key?(:filenames)
+                Obj[newfolder][newbatch][:filenames] << newurl
+              else
+                Obj[newfolder][newbatch].merge!(filenames:[])
+              end
+            else
+              Obj[newfolder].merge!(newbatch => {})
+            end
+          else
+            Obj.merge!(newfolder=>{})
+          end
         end
       end
     end

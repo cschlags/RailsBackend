@@ -14,9 +14,7 @@
 ActiveRecord::Schema.define(version: 20141219021822) do
 
   create_table "batches", force: true do |t|
-    t.string "folder"
-    t.string "batch_number"
-    t.string "url"
+    t.text "folder"
   end
 
   create_table "likes", force: true do |t|

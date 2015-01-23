@@ -27,12 +27,11 @@ class User < ActiveRecord::Base
     batch = Batch.new
     obj = batch.access_bucket
     i = 0
-
-    while i < obj[:folder].length do
+    while i < obj.length do
       @batch = Batch.new
-      @batch.folder = obj[:folder][i]
-      @batch.batch_number = obj[:batch_number][i]
-      @batch.url = obj[:url][i]
+      @batch.folder = {}
+      @batch.folder[obj.first.first] = obj.first.second
+      obj.shift.first
       @batch.save!
       i = i+1
     end
