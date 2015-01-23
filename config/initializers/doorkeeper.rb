@@ -8,7 +8,7 @@ Doorkeeper.configure do
   resource_owner_authenticator do
     # Put your resource owner authentication logic here.
     # Example implementation:
-    User.find_by_id(session[:user_id]) || redirect_to('/auth/facebook')
+    User.find_by_id(session[:current_user_id]) || redirect_to('/')
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.

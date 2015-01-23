@@ -1,17 +1,13 @@
 class Api::V1::BatchController < Api::ApiController
   include ActionController::MimeResponds
-
+  respond_to :json
   def index
-    respond_to do |format|
-      @batches = Batch.all
-      format.json { render json:@batches}
-    end
+    batches = Batch.all
+    render json:batches
   end
 
   def show
-    respond_to do |format|
-      @batch = Batch.find(params[:id])
-      format.json { render json:@batch }
-    end
+    batch = Batch.find(params[:id])
+    render json:batch
   end
 end

@@ -15,13 +15,12 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'signin' => 'application#signin', :as => :signin
   
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api do
     namespace :v1 do
-      resources :user do
-        resources :wardrobe
-        resources :like
-        resources :outfit
-      end
+      resources :user
+      resources :wardrobe
+      resources :like
+      resources :outfit
       resources :batch
     end
   end

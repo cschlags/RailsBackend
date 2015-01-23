@@ -1,17 +1,15 @@
 class Api::V1::WardrobeController < Api::ApiController
   include ActionController::MimeResponds
+  respond_to :json
   def index
-    respond_to do |format|
-      @wardrobe = Wardrobe.all
-      format.json { render json:@wardrobe}
-    end
+    wardrobe = Wardrobe.find(id = current_user.id)
+    render json:wardrobe
   end
 
-  def show
-    respond_to do |format|
-      @user = User.find(params[:id])
-      @wardrobe = Wardrobe.find(id = @user.id)
-      format.json { render json:@wardrobe }
-    end
-  end
+  # def index
+  #   respond_to do |format|
+  #     @wardrobe = Wardrobe.all
+  #     format.json { render json:@wardrobe}
+  #   end
+  # end
 end

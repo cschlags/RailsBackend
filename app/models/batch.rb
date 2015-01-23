@@ -1,5 +1,4 @@
 class Batch < ActiveRecord::Base
-  before_create :access_bucket
   Obj = {:folder => [], :batch_number => [], :url => []}
   def access_bucket
     s3 = AWS::S3.new

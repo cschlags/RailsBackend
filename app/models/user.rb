@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_one :like
   has_one :outfit
   has_one :wardrobe
-  # before_create :generate_api_key
+  before_create :create_batch
   after_create :create_wardrobe, :create_outfit, :create_like
   serialize :preferences
   
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     while i < obj[:folder].length do
       @batch = Batch.new
       @batch.folder = obj[:folder][i]
-      @batch.batch_number = obj[:batch_number][i].uniq
+      @batch.batch_number = obj[:batch_number][i]
       @batch.url = obj[:url][i]
       @batch.save!
       i = i+1
