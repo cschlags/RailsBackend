@@ -1,5 +1,5 @@
 class Batch < ActiveRecord::Base
-  serialize :folder, Hash
+  serialize :folder, JSON
   Obj = {}
   def access_bucket
     s3 = AWS::S3.new
