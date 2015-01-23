@@ -46,18 +46,12 @@ group :test, :development do
   gem "pry"
   gem "guard-rspec", require: false
   gem "thin"
-  gem "paperclip"
-  gem "aws-sdk"
-  gem 'aws-s3'
 end
 
 group :production do
   gem "pg"
   gem "google-analytics-rails"
   gem "rails_12factor"
-  gem "paperclip"
-  gem "aws-sdk"
-  gem 'aws-s3'
 end
 
 gem 'rails-api' , require: 'rails-api/action_controller/api'
