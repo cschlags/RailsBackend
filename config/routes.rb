@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/auth/facebook', as: "facebook_login"
   match 'auth/facebook/callback', to: 'sessions#create', via: [:get, :post]
-  match 'auth/failure', to: redirect('/'), via: [:get, :post]
+  match 'auth/failure', to: redirect('/about'), via: [:get, :post]
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'signin' => 'application#signin', :as => :signin
   
