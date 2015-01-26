@@ -5,8 +5,8 @@ Rails.application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => ENV['curateanalytics'],
-      :access_key_id => ENV['AKIAIES3KIS3P7UPOU2A'],
-      :secret_access_key => ENV['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']
+      :access_key_id => ENV['AKIAIQQGKX5JSWOVPJXQ'],
+      :secret_access_key => ENV['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']
     }
   }
   # Settings specified here will take precedence over those in config/application.rb.

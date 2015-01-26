@@ -9,7 +9,7 @@ class Batch < ActiveRecord::Base
         if obj.key =~ /jpg/
           newfolder = sort_objs(obj.key)[0]
           newbatch =  sort_objs(obj.key)[1]
-          newurl = sort_objs(obj.key)[2]
+          newurl = obj.key
 
           if Obj.key?(newfolder)
             if Obj[newfolder].key?(newbatch)
