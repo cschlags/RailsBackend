@@ -9,7 +9,7 @@ class Batch < ActiveRecord::Base
         if obj.key =~ /jpg/
           newfolder = sort_objs(obj.key)[0]
           newbatch =  sort_objs(obj.key)[1]
-          newurl = obj.key
+          newurl = "https://s3.amazonaws.com/curateanalytics/" + obj.key.gsub('&', '%26').gsub('swipe ', 'swipe+')
 
           if Obj.key?(newfolder)
             if Obj[newfolder].key?(newbatch)
