@@ -20,3 +20,12 @@ Heroku Side:
 create hash for uid => id
 pictures
 api login
+
+if you delete the heroku database then run
+  heroku config:set S3_KEY=xxx S3_SECRET=xxx
+
+if delete local database run
+  aws configure w/ blank region and output
+
+if change aws key/secret, then change config/env/prod, config/env/dev, config/s3
+
