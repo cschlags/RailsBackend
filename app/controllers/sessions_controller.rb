@@ -3,11 +3,11 @@ class SessionsController < ApplicationController
   def create
     @user = User.from_omniauth(env["omniauth.auth"])
     session[:current_user] = @user
-    session[:user_id] = @user.id
+    session[:uid] = @user.id
     redirect_to wardrobe_index_path 
   end
   def destroy
-    session[:user_id] = nil
+    session[:uid] = nil
     redirect_to root_url
   end
 
