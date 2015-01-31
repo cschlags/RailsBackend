@@ -12,4 +12,8 @@ class Api::V1::LikeController < Api::ApiController
     like = Like.find(id = current_user.id)
     render json:like
   end
+
+  def create
+    
+  end
 end

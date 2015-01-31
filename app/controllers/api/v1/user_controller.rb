@@ -10,4 +10,8 @@ class Api::V1::UserController < Api::ApiController
     user = User.find(current_user)
     render json:user
   end
+
+  def create
+    puts "Hello"
+  end
 end

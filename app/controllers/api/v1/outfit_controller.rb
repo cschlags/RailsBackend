@@ -12,4 +12,8 @@ class Api::V1::OutfitController < Api::ApiController
     outfit = Outfit.find(id = current_user.id)
     render json:outfit
   end
+
+  def create
+    
+  end
 end
