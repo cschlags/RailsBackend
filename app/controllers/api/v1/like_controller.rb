@@ -1,7 +1,6 @@
 class Api::V1::LikeController < Api::ApiController
   include ActionController::MimeResponds
   respond_to :json
-  before_filter :authenticate_user!
   # def index
   #   respond_to do |format|
   #     @likes = Like.all
