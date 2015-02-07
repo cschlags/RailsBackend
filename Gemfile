@@ -25,6 +25,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'doorkeeper'
+gem 'warden'
 
 # Amazon S3
 gem "paperclip"

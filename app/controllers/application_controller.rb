@@ -5,16 +5,16 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
   helper_method :authorized_user?
 
-  private 
-    def current_user
-      @current_user ||= User.find(session[:uid]) if session[:uid]
-    end
-    
-    def logged_in?
-      !!current_user
-    end
+  private
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  
+  def logged_in?
+    !!current_user
+  end
 
-    def authorized_user?(wardrobe)
-      logged_in? && wardrobe.user.include?(current_user)
-    end
+  def authorized_user?(wardrobe)
+    logged_in? && wardrobe.user.include?(current_user)
+  end
 end

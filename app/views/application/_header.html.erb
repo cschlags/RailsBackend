@@ -7,6 +7,6 @@
     <!-- Work -->
     <%= link_to "How It Works", work_path%>
     <!-- signin -->
-    <a href="/auth/facebook"><%= image_tag "facebook.png", width: "200"%></a>
+    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
   </nav>
 </header>
