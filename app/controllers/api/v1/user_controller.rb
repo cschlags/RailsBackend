@@ -7,8 +7,12 @@ class Api::V1::UserController < Api::ApiController
   #   respond_with User.all
   # end
   def index
-    user = User.find(current_user)
-    render json:user
+    if current_user != nil
+      user = User.find(current_user)
+      render json:user
+    else
+      render :json=>{:message=>"No"}
+    end
   end
 
   def create
