@@ -41,13 +41,13 @@ class Api::V1::TokensController  < ApplicationController
 
   private
     def fb_oauth_search(access_token)
-      binding.pry
+      # binding.pry
       url = URI.parse('https://graph.facebook.com/me?fields=id&access_token='+@accesstoken)
       req = Net::HTTP::Get.new(url.to_s)
       res = Net::HTTP.start(url.host, url.port) {|http|
         http.request(req)
       }
-      binding.pry
+      # binding.pry
       puts res.body
     end
 end
