@@ -17,12 +17,19 @@ class Api::V1::TokensController  < ApplicationController
         facebook_feed = fb_oauth_search(@token)
         fb_uid = facebook_feed.body.split("{\"id\":\"").second.split("\"").first
         fb_name = facebook_feed.body.split("\"name\":\"").second.split("\"").first
-        if fb_uid != nil
+        fb_email = facebook_feed.body.split("\"email\":\"").second.split("\"").first.gsub("\\u0040","@")
+        fb_gender = facebook_feed.body.split("\"gender\":\"").second.split("\"").first
+        auth = create_auth(fb_uid, fb_email, fb_name, fb_gender)
+        if !User.find_by_uid(uid = "10152951075729059")
           logger.info("User #{fb_name} succeeded signin, they in da' system yo.")
           render :status=>200,
-                 :json=>{:message=>"Yeah bro this is cool yo"}
+                 :json=>{:mesage=>User.find_by_uid(uid = fb_uid)}
           return
         else
+          User.from_omniauth(auth)
+          render :status=>200,
+                 :json=>{:mesage=>User.find_by_uid(uid = auth[:uid])}
+          return
         end  
       end
     end
@@ -46,5 +53,37 @@ class Api::V1::TokensController  < ApplicationController
       res = Net::HTTP.start(url.host, url.port, 
               :use_ssl => url.scheme == 'https') {|http| http.request req}
       return res
+    end
+    def create_auth(fb_uid, fb_email, fb_name, fb_gender)
+      return {:provider=>"facebook",
+              :uid=>fb_uid,
+              :info=>
+                {:email=>fb_email,
+                :name=>fb_name,
+                :first_name=>fb_name.split(" ").first,
+                :last_name=>fb_name.split(" ").second,
+                :image=>"http://graph.facebook.com/"+fb_uid+"/picture",
+                :urls=>{:Facebook=>"https://www.facebook.com/app_scoped_user_id/"+fb_uid+"/"},
+                :verified=>true},
+                :credentials=>
+                  {:token=>@token,
+                  :expires_at=>1428870900,
+                  :expires=>true},
+                  :extra=>
+                    {:raw_info=>
+                      {:id=>fb_uid,
+                      :email=>fb_email,
+                      :first_name=>fb_name.split(" ").first,
+                      :gender=>fb_gender,
+                      :last_name=>fb_name.split(" ").second,
+                      :link=>"https://www.facebook.com/app_scoped_user_id/"+ fb_uid +"/",
+                      :locale=>"en_GB",
+                      :name=>fb_name,
+                      :timezone=>-5,
+                      :updated_time=>DateTime.now.to_date,
+                      :verified=>true
+                      }
+                    }
+                  }
     end
 end
