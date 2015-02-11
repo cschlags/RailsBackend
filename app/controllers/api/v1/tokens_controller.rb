@@ -1,23 +1,24 @@
 class Api::V1::TokensController  < ApplicationController
     respond_to :json
-    TOKEN = "123"
+    OAUTH_TOKEN = "10152951075729059"
     def create
       binding.pry
-      @token = params[:token]
+      @oauth_token = params[:oauth_token]
       if request.format != :json
         render :status=>406, :json=>{:message=>"The request must be json my brony"}
         return
        end
  
-    if @token.nil?
-      logger.info("User #{@token} failed signin, user cannot be found.")
+    if @oauth_token.nil?
+      logger.info("User #{@oauth_token} failed signin, user cannot be found.")
       render :status=>400,
              :json=>{:message=>"Yo man this is nil yo"}
       return
-    elsif @token = TOKEN
-      logger.info("User #{@token} succeeded signin, they in da' system yo.")
+    elsif @oauth_token = OAUTH_TOKEN
+      logger.info("User #{@oauth_token} succeeded signin, they in da' system yo.")
       render :status=>200,
              :json=>{:message=>"Yeah bro this is cool yo"}
+      redirect_to "/application/index"
       return
     end
   end

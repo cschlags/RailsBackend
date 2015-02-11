@@ -26,6 +26,7 @@ gem 'omniauth-facebook'
 gem 'devise'
 gem 'doorkeeper'
 gem 'warden'
+gem 'fb_graph'
 gem 'protected_attributes'
 
 # Amazon S3
