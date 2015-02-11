@@ -17,7 +17,6 @@ class Api::V1::TokensController  < ApplicationController
         facebook_feed = fb_oauth_search(@token)
         fb_uid = facebook_feed.body.split("{\"id\":\"").second.split("\"").first
         fb_name = facebook_feed.body.split("\"name\":\"").second.split("\"").first
-        binding.pry
         if fb_uid != nil
           logger.info("User #{fb_name} succeeded signin, they in da' system yo.")
           render :status=>200,
