@@ -1,7 +1,6 @@
 require 'net/http'
 class Api::V1::TokensController  < ApplicationController
     respond_to :json
-    TOKEN = "123"
     def create
       @token = params[:token]
       if request.format != :json
@@ -14,16 +13,18 @@ class Api::V1::TokensController  < ApplicationController
         render :status=>400,
                :json=>{:message=>"Yo man this is nil yo"}
         return
-      elsif @token = TOKEN
-        # facebook_feed = fb_oauth_search(@token)
-
-        # if facebook_feed.uid != nil
-          logger.info("User #{@token} succeeded signin, they in da' system yo.")
+      else
+        facebook_feed = fb_oauth_search(@token)
+        fb_uid = facebook_feed.body.split("{\"id\":\"").second.split("\"").first
+        fb_name = facebook_feed.body.split("\"name\":\"").second.split("\"").first
+        binding.pry
+        if fb_uid != nil
+          logger.info("User #{fb_name} succeeded signin, they in da' system yo.")
           render :status=>200,
                  :json=>{:message=>"Yeah bro this is cool yo"}
           return
-        # else
-        # end  
+        else
+        end  
       end
     end
  
@@ -40,14 +41,11 @@ class Api::V1::TokensController  < ApplicationController
   end
 
   private
-    def fb_oauth_search(access_token)
-      # binding.pry
-      url = URI.parse('https://graph.facebook.com/me?fields=id&access_token='+@accesstoken)
-      req = Net::HTTP::Get.new(url.to_s)
-      res = Net::HTTP.start(url.host, url.port) {|http|
-        http.request(req)
-      }
-      # binding.pry
-      puts res.body
+    def fb_oauth_search(oauth_token)
+      url = URI.parse('https://graph.facebook.com/me?&access_token='+oauth_token)
+      req = Net::HTTP::Get.new url
+      res = Net::HTTP.start(url.host, url.port, 
+              :use_ssl => url.scheme == 'https') {|http| http.request req}
+      return res
     end
 end
