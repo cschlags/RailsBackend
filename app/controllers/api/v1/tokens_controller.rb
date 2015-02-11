@@ -23,12 +23,12 @@ class Api::V1::TokensController  < ApplicationController
         if !User.find_by_uid(uid = "10152951075729059")
           logger.info("User #{fb_name} succeeded signin, they in da' system yo.")
           render :status=>200,
-                 :json=>{:mesage=>User.find_by_uid(uid = fb_uid)}
+                 :json=>User.find_by_uid(uid = fb_uid)
           return
         else
           User.from_omniauth(auth)
           render :status=>200,
-                 :json=>{:mesage=>User.find_by_uid(uid = auth[:uid])}
+                 :json=>User.find_by_uid(uid = auth[:uid])
           return
         end  
       end
