@@ -12,7 +12,7 @@ class Api::V1::TokensController  < ApplicationController
     if @token.nil?
       logger.info("User #{@token} failed signin, user cannot be found.")
       render :status=>400,
-             :json=>{:message=>"Nigga this is nil yo"}
+             :json=>{:message=>"Yo man this is nil yo"}
       return
     elsif @token = TOKEN
       logger.info("User #{@token} succeeded signin, they in da' system yo.")
