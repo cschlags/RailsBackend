@@ -20,7 +20,7 @@ class Api::V1::TokensController  < ApplicationController
         fb_email = facebook_feed.body.split("\"email\":\"").second.split("\"").first.gsub("\\u0040","@")
         fb_gender = facebook_feed.body.split("\"gender\":\"").second.split("\"").first
         auth = create_auth(fb_uid, fb_email, fb_name, fb_gender)
-        if !User.find_by_uid(uid = "10152951075729059")
+        if User.find_by_uid(uid = fb_uid)
           logger.info("User #{fb_name} succeeded signin, they in da' system yo.")
           render :status=>200,
                  :json=>User.find_by_uid(uid = fb_uid)
