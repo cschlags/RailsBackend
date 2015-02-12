@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150207181809) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "likes"
+    t.string   "authentication_token"
   end
 
   create_table "outfits", force: true do |t|
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150207181809) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "outfits"
+    t.string   "authentication_token"
   end
 
   create_table "users", force: true do |t|
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150207181809) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "wardrobe"
+    t.string   "authentication_token"
   end
 
 end
