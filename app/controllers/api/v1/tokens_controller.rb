@@ -26,10 +26,17 @@ class Api::V1::TokensController  < ApplicationController
                  :json=>User.find_by_uid(uid = fb_uid)
           return
         else
-          User.from_omniauth(auth)
-          render :status=>200,
-                 :json=>User.find_by_uid(uid = auth[:uid])
-          return
+          @user = User.from_omniauth(auth)
+          @user.save!
+          if @user.save!
+            render :status=>200,
+                   :json=>@user
+            return
+          else
+            render :status=>200,
+                   :json=>{:message=>"Bro did not save"}
+            return
+          end
         end  
       end
     end
