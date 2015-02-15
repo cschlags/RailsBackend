@@ -4,7 +4,9 @@ class Outfit < ActiveRecord::Base
   after_create :serialize_outfits
   
   def serialize_outfits
-     self.outfits = {name: nil, items: {shirts: nil, pants: nil, shoes: nil, outerwear: nil}}
-     self.save!
+    self.user_id = user.id
+    self.authentication_token = user.authentication_token
+    self.outfits = {name: nil, items: {shirts: nil, pants: nil, shoes: nil, outerwear: nil}}
+    self.save!
   end
 end

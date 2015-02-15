@@ -1,7 +1,7 @@
 class CreateOutfits < ActiveRecord::Migration
   def change
     create_table :outfits do |t|
-      t.string :user_id
+      t.integer :user_id
       t.string :authentication_token
 
       t.timestamps

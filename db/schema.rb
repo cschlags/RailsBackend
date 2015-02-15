@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150207181809) do
   end
 
   create_table "likes", force: true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150207181809) do
   end
 
   create_table "outfits", force: true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -34,14 +34,11 @@ ActiveRecord::Schema.define(version: 20150207181809) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "curate_user_id"
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
     t.string   "email"
     t.string   "image"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "preferences"
@@ -60,7 +57,7 @@ ActiveRecord::Schema.define(version: 20150207181809) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "wardrobes", force: true do |t|
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"

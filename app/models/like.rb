@@ -4,7 +4,9 @@ class Like < ActiveRecord::Base
   after_create :serialize_likes
   
   def serialize_likes
-     self.likes = {type: nil, image: nil}
-     self.save!
+    self.user_id = user.id
+    self.authentication_token = user.authentication_token
+    self.likes = {type: nil, image: nil}
+    self.save!
   end
 end
