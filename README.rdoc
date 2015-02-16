@@ -7,11 +7,11 @@ Local Side:
 
 Heroku Side:
   If facebook doens't work for heroku run 
-    heroku run rake db:migrate --account personal
+    heroku run rake db:migrate
 
   If you need to get heroku changed 
-    heroku pg:reset DATABASE --account personal
-    heroku run rake db:migrate --account personal
+    heroku pg:reset DATABASE
+    heroku run rake db:migrate
 
   If rails server is over running do 
     lsof -wni tcp:3000
@@ -21,7 +21,9 @@ create hash for uid => id
 pictures
 api login
 
-if you delete the heroku database then run
+if S3 is not working run
+  heroku config
+if heroku config does not contain correct S3 KEY/SECRET
   heroku config:set S3_KEY=xxx S3_SECRET=xxx
 
 if delete local database run
