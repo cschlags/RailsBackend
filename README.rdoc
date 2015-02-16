@@ -20,6 +20,7 @@ Heroku Side:
 create hash for uid => id
 pictures
 api login
+remember to put in at least one wob variable
 
 if S3 is not working run
   heroku config
