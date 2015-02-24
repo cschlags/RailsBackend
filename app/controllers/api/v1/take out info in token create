@@ -1,6 +1,0 @@
-take out info in token create
-auth token
-login to facebook with auth token hopefully that user params
-if user exists in db
-  yes keep logged in
-if no then create new user and keep logged in
