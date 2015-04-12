@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => 'omniauth_callbacks'}
+  resources :emails
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   use_doorkeeper
-  root to: "application#index"
+  root to: "emails#new"
   get 'work' => 'application#work', :as => :work
   get 'about' => 'application#about', :as => :about
+  get 'signin' => 'application#signin', :as => :signin
 
     resources :user
     resources :wardrobe

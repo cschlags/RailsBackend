@@ -1,6 +1,7 @@
 Rails.application.configure do
   FACEBOOK_ID = "752609968166675"
   FACEBOOK_SECRET = "eced68f9335bd739f59451dbf5dbeab9"
+  MANDRILL_KEY = "BjNyqrSlBLnJ7cfECQirMQ"
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -45,5 +46,14 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   # devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+# ActionMailer Config
+config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "curateanalytics@gmail.com",
+    :password  => "AcDNj-E29BkZjCTbiTYu0w", # SMTP password is any valid API key
+    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
+    :domain => 'http://curateanalytics.herokuapp.com', # your domain to identify your server when connecting
+  }
 end

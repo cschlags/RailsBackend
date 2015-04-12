@@ -3,10 +3,9 @@
 
   <head>
     <link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/shift.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
-
-    <link rel="stylesheet" href="/css/main.css">
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'main'%>
 
   </head>
 
@@ -17,8 +16,8 @@
             <h1>curate</h1>
             <p>The future of men's fashion</p>
             <%= form_for(@email) do |f| %>
-              <%= f.text_field :email, :placeholder => "example@example.com", :size => "35" %>
-              <%f.submit "Get Early Access"%>
+              <%= f.text_field :email, :placeholder => "example@example.com", :size => "35"%>
+              <%=f.submit "Get Early Access"%>
             <%end%>
         </div>
       </div>

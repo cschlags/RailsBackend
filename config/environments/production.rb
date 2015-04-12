@@ -1,6 +1,7 @@
 Rails.application.configure do
   FACEBOOK_ID = "752609968166675"
   FACEBOOK_SECRET = "eced68f9335bd739f59451dbf5dbeab9"
+  MANDRILL_KEY = "BjNyqrSlBLnJ7cfECQirMQ"
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
@@ -13,7 +14,6 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -30,14 +30,14 @@ Rails.application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -90,5 +90,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   # devise
-  config.action_mailer.default_url_options = { host: 'curateanalytics.herokuapp.com'}
+ config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "curateanalytics@gmail.com",
+    :password  => "AcDNj-E29BkZjCTbiTYu0w", # SMTP password is any valid API key
+    :authentication => 'plain', # Mandrill supports 'plain' or 'login'
+    :domain => 'http://curateanalytics.herokuapp.com', # your domain to identify your server when connecting
+  }
 end

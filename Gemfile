@@ -28,11 +28,15 @@ gem 'doorkeeper'
 gem 'warden'
 gem 'fb_graph'
 gem 'protected_attributes'
+gem 'roo'
+gem 'rubyXL'
 
 # Amazon S3
 gem "paperclip"
 gem "aws-sdk"
 gem 'aws-s3'
+gem 'mail'
+gem 'mandrill-api', :require => 'mandrill' 
 
 # Makes forms prettier
 # gem 'simpleform'
