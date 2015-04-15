@@ -6,7 +6,7 @@ class Like < ActiveRecord::Base
   def serialize_likes
     self.user_id = user.id
     self.authentication_token = user.authentication_token
-    self.likes = {type: nil, image: nil}
+    self.likes = [{:filename => "url", :properties => {}}]
     self.save!
   end
 end
