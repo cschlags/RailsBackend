@@ -38,7 +38,7 @@ class Wardrobe < ActiveRecord::Base
 
   def find_properties
     binding.pry
-    book = Roo::Excelx.new("DatabaseTest.xlsx")
+    book = Roo::Excelx.new("Properties.xlsx")
     sheets = book.sheets
     clothes = Array.new(sheets.count)
     counter = 0
