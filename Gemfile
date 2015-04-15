@@ -30,6 +30,7 @@ gem 'fb_graph'
 gem 'protected_attributes'
 gem 'roo'
 gem 'rubyXL'
+gem 'rubyzip'
 
 # Amazon S3
 gem "paperclip"

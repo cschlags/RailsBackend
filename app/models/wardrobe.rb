@@ -38,9 +38,10 @@ class Wardrobe < ActiveRecord::Base
 
   def find_properties
     binding.pry
-    book = Roo::Excelx.new("Properties.xlsx")
+    # xlsx = Roo::Spreadsheet.open('./Properties.xlsx')
+    # xlsx = Roo::Excelx.new("./Properties.xlsx")
+    book = Roo::Spreadsheet.open('./Properties.csv')
+    book = Roo::CSV.new('Properties.csv')
     sheets = book.sheets
-    clothes = Array.new(sheets.count)
-    counter = 0
   end
 end

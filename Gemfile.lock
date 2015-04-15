@@ -328,6 +328,7 @@ DEPENDENCIES
   roo
   rspec-rails
   rubyXL
+  rubyzip
   sass-rails (= 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
