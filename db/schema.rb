@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150412173827) do
 
   create_table "batches", force: true do |t|
-    t.text "folder"
+    t.text "batches"
   end
 
   create_table "emails", force: true do |t|

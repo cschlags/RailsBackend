@@ -39,8 +39,8 @@ class User < ActiveRecord::Base
     i = 0
     while i < obj.length do
       @batch = Batch.new
-      @batch.folder = {}
-      @batch.folder[obj.first.first] = obj.first.second
+      @batch.batches = {}
+      @batch.batches[obj.first.first] = obj.first.second
       obj.shift.first
       @batch.save!
       i = i+1

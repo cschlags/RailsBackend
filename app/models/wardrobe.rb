@@ -1,6 +1,5 @@
 class Wardrobe < ActiveRecord::Base
   require 'rubygems'
-  require 'roo'
   require 'json'
 
   belongs_to :user
@@ -37,11 +36,29 @@ class Wardrobe < ActiveRecord::Base
   end
 
   def find_properties
-    binding.pry
-    # xlsx = Roo::Spreadsheet.open('./Properties.xlsx')
-    # xlsx = Roo::Excelx.new("./Properties.xlsx")
-    book = Roo::Spreadsheet.open('./Properties.csv')
-    book = Roo::CSV.new('Properties.csv')
-    sheets = book.sheets
+    s = File.join(Rails.root, 'public', 'DatabaseArray.json')
+    file = File.read(s)
+    data_hash = JSON.parse(file)
+    data_hash.each do |main_category|
+      main_category.each do |sub_category|
+        self.wardrobe.keys.each do |key|
+          self.wardrobe[key].each do |files|
+            @wardrobe_file_name = files[:filename].split("/").last.gsub("%26","&")
+            if (@wardrobe_file_name == sub_category.split(",").first.split(":").second.split("\"").second)
+              array = sub_category.split(",")
+              array.each do |this|
+                name = this.split(":").first.split("\"").second
+                if (this.split(":").first.split("\"").second == "URL")
+                  property = files[:filename]
+                else
+                  property = this.split(":").second.split("\"").second
+                end
+                files[:properties].merge!(name => property)
+              end
+            end
+          end
+        end
+      end  
+    end
   end
 end

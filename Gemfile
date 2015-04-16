@@ -29,8 +29,8 @@ gem 'warden'
 gem 'fb_graph'
 gem 'protected_attributes'
 gem 'roo'
-gem 'rubyXL'
-gem 'rubyzip'
+gem 'json'
+
 
 # Amazon S3
 gem "paperclip"
