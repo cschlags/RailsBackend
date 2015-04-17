@@ -99,16 +99,7 @@ class Batch < ActiveRecord::Base
     def parse_sub
       @sub.gsub("\"","")[1..-2].split(",").each do |properties|
         @property = properties.split(":")
-        if is_URL?
-          @hash.merge!(@property.first.parameterize.underscore.to_sym => @bucket_url)
-          @hash.merge!(:properties => {})
-        elsif is_File_Name?
-          @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.second)
-        elsif is_Main?
-          @hash[:properties].merge!(@property.second.gsub!("{","").parameterize.underscore.to_sym => @property.last)
-        else
-          @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.second)
-        end
+        is_everything
       end
     end
 
@@ -122,6 +113,21 @@ class Batch < ActiveRecord::Base
 
     def is_Main?
       @property.second == "{Main_Category"
+    end
+
+    def is_everything
+      if is_URL?
+        hash_merge(@property.first,@bucket_url)
+        @hash.merge!(:properties => {})
+      elsif is_Main?
+        hash_merge(@property.second.gsub!("{",""),@property.last)
+      else
+        hash_merge(@property.first,@property.second)
+      end
+    end
+
+    def hash_merge(name, property)
+      @hash.merge!(name.parameterize.underscore.to_sym => property)
     end
   end
 end
