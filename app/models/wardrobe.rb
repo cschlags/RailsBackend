@@ -12,15 +12,6 @@ class Wardrobe < ActiveRecord::Base
      },{:file_name => "",
       :url => "https://s3.amazonaws.com/curateanalytics/tops/hoodie/H%26M.Hoodie.Charcoal.jpg",
       :properties => {}
-     },{:file_name => "",
-      :url => "https://s3.amazonaws.com/curateanalytics/tops/hoodie/H%26M.Hoodie.DarkGreen.jpg",
-      :properties => {}
-     },{:file_name => "",
-      :url => "https://s3.amazonaws.com/curateanalytics/tops/hoodie/H%26M.Hoodie.Gray.jpg",
-      :properties => {}
-     },{:file_name => "",
-      :url => "https://s3.amazonaws.com/curateanalytics/tops/hoodie/H%26M.Hoodie.Green.jpg",
-      :properties => {}
      }],
      :bottoms => [{:file_name => "",
       :url => "http://s3.amazonaws.com/curateanalytics/bottoms/pants/5pocket%20pants/regular/H&M_5-Pocket_Regular_Black.jpg",
@@ -28,20 +19,52 @@ class Wardrobe < ActiveRecord::Base
      },{:file_name => "",
       :url => "http://s3.amazonaws.com/curateanalytics/bottoms/pants/5pocket%20pants/regular/H&M_5-Pocket_Regular_Blue.jpg",
       :properties => {}
-     },{:file_name => "",
-      :url => "https://s3.amazonaws.com/curateanalytics/bottoms/shorts/twill/Uniqlo_Shorts_Stretch_Twill_Blue.jpg",
-      :properties => {}
-     },{:file_name => "",
-      :url => "https://s3.amazonaws.com/curateanalytics/bottoms/shorts/twill/Uniqlo_Shorts_Stretch_Twill_Brown.jpg",
-      :properties => {}
-     },{:file_name => "",
-      :url => "https://s3.amazonaws.com/curateanalytics/bottoms/shorts/twill/Uniqlo_Shorts_Stretch_Twill_Charcoal.jpg",
-      :properties => {}
      }]}
+     # Properties.new(self.wardrobe).find_properties
      find_properties
     self.save!
   end
 
+  # class Properties
+  #   def initialize(wardrobe)
+  #     @hash = {}
+  #     @wardrobe = wardrobe
+  #   end
+
+  #   def find_properties
+  #     read_json
+  #     parse_json
+  #     parse_main
+  #     parse_sub
+  #     return @hash
+  #   end
+
+  #   def read_json
+  #     @json = JSON.parse(File.read(File.join(Rails.root, 'public', 'DatabaseArray.json')))
+  #   end
+
+  #   def parse_json
+  #     @json.each do |main|
+  #       @main = main
+  #     end
+  #   end
+
+  #   def parse_main
+  #     @main.each do |sub|
+  #       @sub = sub
+  #     end
+  #   end
+
+  #   def parse_sub
+  #     @sub.gsub("\"","")[1..-2].split(",").each do |properties|
+  #       @property = properties.split(":")
+  #       parse_wardrobe
+  #     end
+  #   end
+  # end
+  #   def parse_wardrobe
+  #     binding.pry
+  #   end
   def find_properties
     s = File.join(Rails.root, 'public', 'DatabaseArray.json')
     file = File.read(s)
