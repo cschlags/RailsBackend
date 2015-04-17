@@ -1,7 +1,4 @@
 class Wardrobe < ActiveRecord::Base
-  require 'rubygems'
-  require 'json'
-
   belongs_to :user
   serialize :wardrobe
   after_create :serialize_wardrobe
