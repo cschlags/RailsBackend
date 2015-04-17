@@ -1,73 +1,127 @@
 class Batch < ActiveRecord::Base
   serialize :folder, JSON
-  Obj = {}
+  
   def access_bucket
-    array = []
-    current = ""
-    s3 = AWS::S3.new
-    bucket = s3.buckets['curateanalytics']
-    bucket.objects.each do |obj|
-      if obj.key =~ /swipe batches/
-        if obj.key =~ /jpg/
-          newfolder = sort_objs(obj.key)[0]
-          newbatch = sort_objs(obj.key)[1]
-          newurl = "https://s3.amazonaws.com/curateanalytics/" + obj.key.gsub('&', '%26').gsub('swipe ', 'swipe+')
-          if Obj.key?(newfolder)
-            if current == newbatch
-              array << find_properties(newurl)
-            else
-              current = newbatch
-              if array != []
-                Obj[newfolder] << array
-              end
+    AwsAccess.new('curateanalytics', [], "", {}).sort_through_bucket
+  end
+
+  class AwsAccess
+    def initialize(bucket_name, array, current, obj)
+      @bucket_name = bucket_name
+      @array = array
+      @current = current
+      @obj = obj
+      @newfolder
+      @newbatch
+      @newurl
+    end
+
+    def access_bucket
+      return AWS::S3.new.buckets[@bucket_name]
+    end
+
+    def sort_through_bucket
+      access_bucket.objects.each do |obj|
+        if obj_is_swipe_batch?(obj)
+          create_new_instances(obj)
+          if !obj_contains_key?
+            add_newfolder_key
+          end
+          if !current_equals_batch?
+            @current = @newbatch
+            if array_not_array?
+              @obj[@newfolder] << @array
             end
-          else
-            Obj.merge!(newfolder => [])
-          end    
+          end
+          @array << Properties.new(@newurl).find_properties
+        end
+      end
+      return @obj
+    end
+
+    def obj_is_swipe_batch?(obj)
+      return ((obj.key =~ /swipe batches/) && (obj.key =~ /jpg/))
+    end
+
+    def create_new_instances(obj)
+      @newfolder = obj.key.split("/")[1]
+      @newbatch = obj.key.split("/")[obj.key.split("/").length-2]
+      @newurl = "https://s3.amazonaws.com/curateanalytics/" + obj.key.gsub('&', '%26').gsub('swipe ', 'swipe+')
+    end
+
+    def obj_contains_key?
+      @obj.key?(@newfolder)
+    end
+
+    def add_newfolder_key
+      @obj.merge!(@newfolder => [])
+    end
+
+    def current_equals_batch?
+      @current == @newbatch
+    end
+
+    def array_not_array?
+      @array != []
+    end
+  end
+
+  class Properties
+    def initialize(bucket_url)
+      @bucket_url = bucket_url
+      @hash = {}
+    end
+
+    def find_properties
+      read_json
+      parse_json
+      parse_main
+      parse_sub
+      return @hash
+    end
+
+    def read_json
+      @json = JSON.parse(File.read(File.join(Rails.root, 'public', 'DatabaseArray.json')))
+    end
+
+    def parse_json
+      @json.each do |main|
+        @main = main
+      end
+    end
+
+    def parse_main
+      @main.each do |sub|
+        @sub = sub
+      end
+    end
+
+    def parse_sub
+      @sub.gsub("\"","")[1..-2].split(",").each do |properties|
+        @property = properties.split(":")
+        if is_URL?
+          @hash.merge!(@property.first.parameterize.underscore.to_sym => @bucket_url)
+          @hash.merge!(:properties => {})
+        elsif is_File_Name?
+          @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.second)
+        elsif is_Main?
+          @hash[:properties].merge!(@property.second.gsub!("{","").parameterize.underscore.to_sym => @property.last)
+        else
+          @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.second)
         end
       end
     end
-    return Obj
-  end
 
-  def sort_objs(url)
-    swipe = url.split("swipe batches/").last.split("/").first
-    batch_id = url.split("swipe batches/").last.split("/")[1]
-    file = url.split("swipe batches/").last.split("/").last
-    return [swipe, batch_id, file]
-  end
-
-  def find_properties(url)
-    hash = {}
-    s = File.join(Rails.root, 'public', 'DatabaseArray.json')
-    file = File.read(s)
-    data_hash = JSON.parse(file)
-    data_hash.each do |main_category|
-      main_category.each do |sub_category|
-        newurl = url.split("/").last.gsub("%26","&")
-        if (newurl == sub_category.split(",").first.split(":").second.split("\"").second)
-          sub_category.gsub("\"","")[1..-2].split(",").each do |string|
-            properties = string.split(":")
-            if (properties.first == "URL") || (properties.first == "File_Name")
-              if (properties.first == "URL")
-                hash.merge!(properties.first.parameterize.underscore.to_sym => url)
-                hash.merge!(:properties => {})
-              else
-                hash.merge!(properties.first.parameterize.underscore.to_sym => properties.second)
-              end
-            else
-              if hash.key?(:properties)
-                if (properties.first == "Properties")
-                  hash[:properties].merge!(properties.second.gsub!("{","").parameterize.underscore.to_sym => properties.last)
-                else
-                  hash[:properties].merge!(properties.first.parameterize.underscore.to_sym => properties.second)
-                end
-              end
-            end
-          end
-        end
-      end  
+    def is_URL?
+      @property.first == "URL"
     end
-  return hash
+
+    def is_File_Name?
+      @property.first == "File_Name"
+    end
+
+    def is_Main?
+      @property.second == "{Main_Category"
+    end
   end
 end

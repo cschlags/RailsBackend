@@ -2,8 +2,8 @@ class Api::V1::BatchController < Api::ApiController
   include ActionController::MimeResponds
   respond_to :json
   def index
-    batches = Batch.all
-    render json:batches
+    binding.pry
+    render json:Batch.all
   end
 
   def show

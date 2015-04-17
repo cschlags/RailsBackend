@@ -34,17 +34,10 @@ class User < ActiveRecord::Base
   end         
 
   def create_batch
-    batch = Batch.new
-    obj = batch.access_bucket
-    i = 0
-    while i < obj.length do
-      @batch = Batch.new
-      @batch.folder = {}
-      @batch.folder[obj.first.first] = obj.first.second
-      obj.shift.first
-      @batch.save!
-      i = i+1
-    end
+    @batch = Batch.new
+    @batch.folder = {}
+    @batch.folder.merge!(@batch.access_bucket)
+    @batch.save!
   end
    
   private
