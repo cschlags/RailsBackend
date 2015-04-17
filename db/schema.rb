@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412173827) do
+ActiveRecord::Schema.define(version: 20150417184509) do
 
   create_table "batches", force: true do |t|
     t.text "folder"
+  end
+
+  create_table "bottoms", force: true do |t|
+    t.string "batch_folder"
+    t.string "batch_number"
+    t.string "file_name"
+    t.string "url"
+    t.text   "properties"
   end
 
   create_table "emails", force: true do |t|
@@ -37,6 +45,14 @@ ActiveRecord::Schema.define(version: 20150412173827) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "outfits"
+  end
+
+  create_table "tops", force: true do |t|
+    t.string "batch_folder"
+    t.string "batch_number"
+    t.string "file_name"
+    t.string "url"
+    t.text   "properties"
   end
 
   create_table "users", force: true do |t|

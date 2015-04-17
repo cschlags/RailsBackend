@@ -1,10 +1,11 @@
 class Batch < ActiveRecord::Base
   serialize :folder, JSON
-  
+  has_many :tops
+  has_many :bottoms
+
   def access_bucket
     AwsAccess.new('curateanalytics', [], "", {}).sort_through_bucket
   end
-
   class AwsAccess
     def initialize(bucket_name, array, current, obj)
       @bucket_name = bucket_name
@@ -33,10 +34,14 @@ class Batch < ActiveRecord::Base
               @obj[@newfolder] << @array
             end
           end
-          @array << Properties.new(@newurl).find_properties
+          if Properties.new(@newurl).find_properties[:main_category] == "Bottoms"
+            @bottom = Bottoms.create({:batch_folder => @newfolder, :batch_number => @newbatch , :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => Properties.new(@newurl).find_properties})
+          end
+          if Properties.new(@newurl).find_properties[:main_category] == "Tops"
+            @top = Tops.create({:batch_folder => @newfolder, :batch_number => @newbatch, :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => Properties.new(@newurl).find_properties})
+          end
         end
       end
-      return @obj
     end
 
     def obj_is_swipe_batch?(obj)
@@ -116,13 +121,10 @@ class Batch < ActiveRecord::Base
     end
 
     def is_everything
-      if is_URL?
-        hash_merge(@property.first,@bucket_url)
-        @hash.merge!(:properties => {})
-      elsif is_Main?
+      if !is_URL? && !is_File_Name? && is_Main?
         hash_merge(@property.second.gsub!("{",""),@property.last)
-      else
-        hash_merge(@property.first,@property.second)
+      elsif !is_URL? && !is_File_Name?
+        hash_merge(@property.first,@property.last)
       end
     end
 

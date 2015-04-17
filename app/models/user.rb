@@ -8,10 +8,9 @@ class User < ActiveRecord::Base
   has_one :like
   has_one :outfit
   has_one :wardrobe
-  before_create :create_batch
   serialize :preferences
   before_save :ensure_authentication_token
-  after_save :create_wardrobe, :create_outfit, :create_like
+  after_save :create_wardrobe, :create_outfit, :create_like, :create_batch
  
   def ensure_authentication_token
     if authentication_token.blank?
@@ -36,7 +35,8 @@ class User < ActiveRecord::Base
   def create_batch
     @batch = Batch.new
     @batch.folder = {}
-    @batch.folder.merge!(@batch.access_bucket)
+    @batch.access_bucket
+    @batch.folder.merge!(:bottoms => Bottoms.pluck(:batch_folder, :batch_number, :file_name, :url, :properties))
     @batch.save!
   end
    

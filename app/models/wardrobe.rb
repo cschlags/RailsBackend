@@ -52,6 +52,7 @@ class Wardrobe < ActiveRecord::Base
   #   def parse_main
   #     @main.each do |sub|
   #       @sub = sub
+  #       binding.pry
   #     end
   #   end
 
@@ -61,10 +62,39 @@ class Wardrobe < ActiveRecord::Base
   #       parse_wardrobe
   #     end
   #   end
-  # end
+
   #   def parse_wardrobe
-  #     binding.pry
+  #     @wardrobe.keys.each do |key|
+  #       @key = key
+  #       parse_keys
+  #     end
   #   end
+
+  #   def parse_keys
+  #     @wardrobe[@key].each do |files|
+  #       @files = files
+  #       binding.pry
+  #       add_property
+  #     end
+  #   end
+
+  #   def add_property
+  #     if property_is_filename?
+  #       if is_part_of_wardrobe?
+  #         binding.pry
+  #       end
+  #     end
+  #   end
+
+  #   def property_is_filename?
+  #     @property.first == "File_Name"
+  #   end
+
+  #   def is_part_of_wardrobe?
+  #     binding.pry
+  #     @property.second == @files[:url].split("/").last.gsub("%26","&")
+  #   end
+  # end
   def find_properties
     s = File.join(Rails.root, 'public', 'DatabaseArray.json')
     file = File.read(s)

@@ -38,10 +38,9 @@ gem "aws-sdk"
 gem 'aws-s3'
 gem 'mail'
 gem 'mandrill-api', :require => 'mandrill' 
-
+gem 'newrelic_rpm'
 # Makes forms prettier
 # gem 'simpleform'
-
 group :test, :development do
   # gem "rspec-rails"
   # gem "selenium-webdriver"
