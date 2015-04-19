@@ -34,10 +34,7 @@ class User < ActiveRecord::Base
 
   def create_batch
     @batch = Batch.new
-    @batch.folder = {}
     @batch.access_bucket
-    @batch.folder.merge!(:bottoms => Bottoms.pluck(:batch_folder, :batch_number, :file_name, :url, :properties))
-    @batch.save!
   end
    
   private
