@@ -52,7 +52,6 @@ class Wardrobe < ActiveRecord::Base
   #   def parse_main
   #     @main.each do |sub|
   #       @sub = sub
-  #       binding.pry
   #     end
   #   end
 
@@ -73,7 +72,6 @@ class Wardrobe < ActiveRecord::Base
   #   def parse_keys
   #     @wardrobe[@key].each do |files|
   #       @files = files
-  #       binding.pry
   #       add_property
   #     end
   #   end
@@ -81,7 +79,7 @@ class Wardrobe < ActiveRecord::Base
   #   def add_property
   #     if property_is_filename?
   #       if is_part_of_wardrobe?
-  #         binding.pry
+
   #       end
   #     end
   #   end
@@ -91,7 +89,6 @@ class Wardrobe < ActiveRecord::Base
   #   end
 
   #   def is_part_of_wardrobe?
-  #     binding.pry
   #     @property.second == @files[:url].split("/").last.gsub("%26","&")
   #   end
   # end

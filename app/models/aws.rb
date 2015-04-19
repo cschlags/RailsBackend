@@ -35,6 +35,5 @@ class Aws < ActiveRecord::Base
     @newfolder = @swipe_batch.key.split("/")[1]
     @newbatch = @swipe_batch.key.split("/")[@swipe_batch.key.split("/").length-2]
     @newurl = "https://s3.amazonaws.com/curateanalytics/" + @swipe_batch.key.gsub('&', '%26').gsub('swipe ', 'swipe+')
-    binding.pry
   end
 end
