@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_one :wardrobe
   serialize :preferences
   before_save :ensure_authentication_token
-  after_save :create_wardrobe, :create_outfit, :create_like, :create_batch
+  after_save :create_wardrobe, :create_outfit, :create_like
  
   def ensure_authentication_token
     if authentication_token.blank?
@@ -30,11 +30,6 @@ class User < ActiveRecord::Base
       user.preferences = { height: nil, weight: nil, age: nil, waist_size: nil, inseam: nil, preferred_pants_fit: nil, shirt_size: nil, preferred_shirt_fit: nil, shoe_size: nil}
       user.save!
     end
-  end         
-
-  def create_batch
-    @batch = Batch.new
-    @batch.access_bucket
   end
    
   private

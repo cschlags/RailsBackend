@@ -1,11 +1,8 @@
 class Batch < ActiveRecord::Base
-  serialize :folder, JSON
-  has_many :tops
-  has_many :bottoms
-
   def access_bucket
     AwsAccess.new('curateanalytics', [], "", {}).sort_through_bucket
   end
+  
   class AwsAccess
     def initialize(bucket_name, array, current, obj)
       @bucket_name = bucket_name

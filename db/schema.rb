@@ -13,10 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150417184509) do
 
-  create_table "batches", force: true do |t|
-    t.text "folder"
-  end
-
   create_table "bottoms", force: true do |t|
     t.string "batch_folder"
     t.string "batch_number"
