@@ -3,7 +3,6 @@ class Api::V1::BatchController < Api::ApiController
   respond_to :json
   def index
     if params[:batch_folder] != nil
-      binding.pry
       @bottoms = Bottoms.where(batch_folder: params[:batch_folder]).pluck(:id, :batch_folder, :batch_number, :file_name, :url, :properties)
       @tops = Tops.where(batch_folder: params[:batch_folder]).pluck(:id, :batch_folder, :batch_number, :file_name, :url, :properties)
       render json: [@tops,@bottoms]
