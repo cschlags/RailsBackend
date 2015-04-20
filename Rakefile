@@ -33,12 +33,7 @@ task :read_aws => :environment do
                 @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.last)
               end
             end
-            if @hash[:main_category] == "Bottoms"
-              Bottoms.create({:batch_folder => @newfolder, :batch_number => @newbatch , :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
-            end
-            if @hash[:main_category] == "Tops"
               Tops.create({:batch_folder => @newfolder, :batch_number => @newbatch, :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
-            end
           else
             next
           end

@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417184509) do
-
-  create_table "bottoms", force: true do |t|
-    t.string "batch_folder"
-    t.string "batch_number"
-    t.string "file_name"
-    t.string "url"
-    t.text   "properties"
-  end
+ActiveRecord::Schema.define(version: 20150417184449) do
 
   create_table "emails", force: true do |t|
     t.string   "email"
