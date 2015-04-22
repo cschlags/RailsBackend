@@ -21,12 +21,12 @@ class User < ActiveRecord::Base
   
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      user.email = auth.info.email
+      user.provider = auth[:provider]
+      user.uid = auth[:uid]
+      user.name = auth[:info][:name]
+      user.email = auth[:info][:email]
       user.password = Devise.friendly_token[0,20]
-      user.image = auth.info.image
+      user.image = auth[:info][:image]
       user.preferences = { height: nil, weight: nil, age: nil, waist_size: nil, inseam: nil, preferred_pants_fit: nil, shirt_size: nil, preferred_shirt_fit: nil, shoe_size: nil}
       user.save!
     end
