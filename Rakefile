@@ -33,6 +33,7 @@ task :read_aws => :environment do
                 @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.last)
               end
             end
+            if @newbatch 
               Tops.create({:batch_folder => @newfolder, :batch_number => @newbatch, :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
           else
             next
@@ -41,4 +42,5 @@ task :read_aws => :environment do
       end
     end
   end
+end
 end

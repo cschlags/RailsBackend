@@ -10,8 +10,9 @@ Heroku Side:
     heroku run rake db:migrate
 
   If you need to get heroku changed 
-    heroku pg:reset DATABASE
+    heroku pg:reset DATABASE --app curateanalytics --confirm curateanalytics
     heroku run rake db:migrate
+    heroku run rake read_aws
 
   If rails server is over running do 
     lsof -wni tcp:3000
