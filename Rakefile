@@ -7,17 +7,14 @@ Rails.application.load_tasks
 desc "Read AWS" 
 task :read_aws => :environment do
   Tops.connection
-  Bottoms.connection
   @hash = {}
-  @newfolder
-  @newbatch
-  @newurl
-  @property
   AWS::S3.new.buckets['curateanalytics'].objects.each do |obj|
     if (obj.key =~ /swipe batches/) && (obj.key =~ /jpg/)
       @newfolder = obj.key.split("/")[1]
       @newbatch = obj.key.split("/")[obj.key.split("/").length-2]
       @newurl = "https://s3.amazonaws.com/curateanalytics/" + obj.key.gsub('&', '%26').gsub('swipe ', 'swipe+')
+      @filename = obj.key.split("/").last
+      @array = [@newfolder, @newbatch]
       JSON.parse(File.read(File.join(Rails.root, 'public', 'DatabaseArray.json'))).each do |main|
         main.each do |sub|
           if sub.split("\"")[3] == obj.key.split("/").last
@@ -33,8 +30,13 @@ task :read_aws => :environment do
                 @hash.merge!(@property.first.parameterize.underscore.to_sym => @property.last)
               end
             end
-            if @newbatch 
-              Tops.create({:batch_folder => @newfolder, :batch_number => @newbatch, :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
+            if Tops.where(file_name: @filename) == []
+              Tops.create({:batch_information => [@array], :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
+            elsif !Tops.where(file_name: @filename).first.batch_information.include?(@array)
+              @top = Tops.where(file_name: @filename).first
+              @top.batch_information << @array
+              @top.save!
+            end
           else
             next
           end
@@ -42,5 +44,4 @@ task :read_aws => :environment do
       end
     end
   end
-end
 end
