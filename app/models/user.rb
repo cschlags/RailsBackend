@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :remember_me, :encrypted_password
+  attr_accessible :email, :password, :remember_me, :encrypted_password, :preferences
   has_one :like
   has_one :outfit
   has_one :wardrobe

@@ -33,4 +33,22 @@ class Api::V1::OutfitController < Api::ApiController
       return
     end
   end
+  def edit
+    if params[:authentication_token] != nil
+      if Outfit.find_by_authentication_token(authentication_token = params[:authentication_token])
+        @outfit = Outfit.find_by_authentication_token(authentication_token = params[:authentication_token])
+        @outfit.outfit = params[:outfits]
+        @outfit.save!
+      else
+        logger.info("Failed connection to outfit/edit json, a outfit cannot be found by that authentication_token.")
+        render :status =>200,
+               :json=>{:message=>"Failed connection to outfit/edit json, a outfit cannot be found by that authentication_token."}
+      end
+    else
+      logger.info("Failed connection to outfit/edit json, no authentication token posted.")
+      render :status=>400,
+            :json=>{:message=>"Did you add the outfit's authentication_token?"}
+      return
+    end
+  end
 end
