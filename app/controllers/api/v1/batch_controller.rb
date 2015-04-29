@@ -10,7 +10,6 @@ class Api::V1::BatchController < Api::ApiController
           @array << Tops.where(number: i)
           i+=1
         end
-        binding.pry
         render json: @array
       else
         render json: Tops.all
