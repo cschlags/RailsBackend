@@ -31,7 +31,8 @@ task :read_aws => :environment do
               end
             end
             if Tops.where(file_name: @filename) == []
-              Tops.create({:batch_information => [@array], :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
+              @number = @newbatch[-2..-1].to_i
+              Tops.create({:batch_information => [@array], :number => @number, :file_name => @newurl.split("/").last.gsub("%26","&"), :url => @newurl, :properties => @hash})
             elsif !Tops.where(file_name: @filename).first.batch_information.include?(@array)
               @top = Tops.where(file_name: @filename).first
               @top.batch_information << @array

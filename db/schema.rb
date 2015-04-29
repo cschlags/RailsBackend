@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(version: 20150417184449) do
   end
 
   create_table "tops", force: true do |t|
-    t.text   "batch_information", default: "--- {}\n"
-    t.string "file_name"
-    t.string "url"
-    t.text   "properties"
+    t.text    "batch_information", default: "--- {}\n"
+    t.integer "number"
+    t.string  "file_name"
+    t.string  "url"
+    t.text    "properties"
   end
 
   create_table "users", force: true do |t|

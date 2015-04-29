@@ -2,8 +2,19 @@ class Api::V1::BatchController < Api::ApiController
   include ActionController::MimeResponds
   respond_to :json
   def index
+    @array = []
+    i = 1
     if Tops.count > 1
-      render json: Tops.all
+      if params[:batch_folder] != nil
+        while i < 19
+          @array << Tops.where(number: i)
+          i+=1
+        end
+        binding.pry
+        render json: @array
+      else
+        render json: Tops.all
+      end
     else
       logger.info("Oh damn the batches aren't here! Call Christina or run 'heroku run rake read_aws'")
       render :status =>200,
