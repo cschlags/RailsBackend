@@ -15,7 +15,7 @@ class Api::V1::BatchController < Api::ApiController
         render json: Tops.all
       end
     else
-      logger.info("Oh damn the batches aren't here! Call Christina or run 'heroku run rake read_aws'")
+      logger.info("Oh damn the batches aren't here! Call Christina!")
       render :status =>200,
              :json=>{:message=>"Shit there aren't any batches in here"}
     end

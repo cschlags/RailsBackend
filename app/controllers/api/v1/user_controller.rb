@@ -1,10 +1,10 @@
 class Api::V1::UserController < Api::ApiController
   include ActionController::MimeResponds
   respond_to :json
+  # def index
+  #   render json:@current_user
+  # end
   def index
-    render json:@current_user
-  end
-  def create
     if params[:authentication_token] != nil
       if User.find_by_authentication_token(authentication_token = params[:authentication_token])
         @user = User.find_by_authentication_token(authentication_token = params[:authentication_token])

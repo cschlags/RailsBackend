@@ -25,10 +25,15 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tokens,:only => [:create, :destroy]
-      resources :user
-      resources :wardrobe
-      resources :like
-      resources :outfit
+      resources :user,via: [:get, :post]
+      resources :wardrobe,via: [:get, :post]
+      match '/outfit/edit', action: [:edit], via: [:get]
+      match '/user/edit', action: [:edit], via: [:get]
+      match '/like/edit', action: [:edit], via: [:get]
+      match '/wardrobe/edit', action: [:edit], via: [:get]
+      match '/matches', :to => 'wardrobe#match', via: [:get, :post]
+      resources :like,via: [:get, :post]
+      resources :outfit,via: [:get, :post]
       resources :batch
     end
   end

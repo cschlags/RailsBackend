@@ -8,17 +8,17 @@ class Api::V1::LikeController < Api::ApiController
   #   end
   # end
 
-  def index
-    like = Like.find(id = current_user.id)
-    render json:like
-  end
+  # def index
+  #   like = Like.find(id = current_user.id)
+  #   render json:like
+  # end
 
   def show
     render :status =>200,
                :json=>current_user
   end
 
-  def create
+  def index
     if params[:authentication_token] != nil
       if User.find_by_authentication_token(authentication_token = params[:authentication_token])
         @user = User.find_by_authentication_token(authentication_token = params[:authentication_token])

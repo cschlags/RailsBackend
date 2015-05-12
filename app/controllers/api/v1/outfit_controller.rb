@@ -1,19 +1,13 @@
 class Api::V1::OutfitController < Api::ApiController
   include ActionController::MimeResponds
   respond_to :json
+
   # def index
-  #   respond_to do |format|
-  #     @outfits = Outfit.all
-  #     format.json { render json:@outfits}
-  #   end
+  #   outfit = Outfit.find(id = current_user.id)
+  #   render json:outfit
   # end
 
   def index
-    outfit = Outfit.find(id = current_user.id)
-    render json:outfit
-  end
-
-  def create
     if params[:authentication_token] != nil
       if User.find_by_authentication_token(authentication_token = params[:authentication_token])
         @user = User.find_by_authentication_token(authentication_token = params[:authentication_token])
