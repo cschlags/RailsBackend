@@ -38,7 +38,7 @@ class Api::V1::LikeController < Api::ApiController
       return
     end
   end
-  def edit
+  def update
     if params[:authentication_token] != nil
       if Like.find_by_authentication_token(authentication_token = params[:authentication_token])
         @like = Like.find_by_authentication_token(authentication_token = params[:authentication_token])

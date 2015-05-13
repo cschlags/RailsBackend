@@ -27,7 +27,7 @@ class Api::V1::OutfitController < Api::ApiController
       return
     end
   end
-  def edit
+  def update
     if params[:authentication_token] != nil
       if Outfit.find_by_authentication_token(authentication_token = params[:authentication_token])
         @outfit = Outfit.find_by_authentication_token(authentication_token = params[:authentication_token])

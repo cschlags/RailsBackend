@@ -27,10 +27,10 @@ Rails.application.routes.draw do
       resources :tokens,:only => [:create, :destroy]
       resources :user,via: [:get, :post]
       resources :wardrobe,via: [:get, :post]
-      match '/outfit/edit', action: [:edit], via: [:get]
-      match '/user/edit', action: [:edit], via: [:get]
-      match '/like/edit', action: [:edit], via: [:get]
-      match '/wardrobe/edit', action: [:edit], via: [:get]
+      post '/outfit/:id/edit', to: 'outfit#update'
+      post '/user/:id/edit', to: 'user#update'
+      post '/like/:id/edit', to: 'like#update'
+      post '/wardrobe/:id/edit', to: 'wardrobe#update'
       match '/matches', :to => 'wardrobe#match', via: [:get, :post]
       resources :like,via: [:get, :post]
       resources :outfit,via: [:get, :post]

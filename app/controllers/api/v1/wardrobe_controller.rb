@@ -27,7 +27,7 @@ class Api::V1::WardrobeController < Api::ApiController
     end
   end
 
-  def edit
+  def update
     if params[:authentication_token] != nil
       if Wardrobe.find_by_authentication_token(authentication_token = params[:authentication_token])
         @wardrobe = Wardrobe.find_by_authentication_token(authentication_token = params[:authentication_token])
