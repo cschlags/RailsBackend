@@ -54,7 +54,6 @@ class Api::V1::WardrobeController < Api::ApiController
           render :status =>200,
                  :json=>{:message=>"Failed connection to Naive Algo, please add the color and style capitalized: ie. Red Bottoms."}
         else
-          binding.pry
         end
       else
         logger.info("Failed connection to wardrobe json, a user cannot be found by that authentication_token.")
