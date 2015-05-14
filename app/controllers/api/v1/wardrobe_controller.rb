@@ -1,11 +1,6 @@
 class Api::V1::WardrobeController < Api::ApiController
   include ActionController::MimeResponds
   respond_to :json
-  # def index
-  #   wardrobe = Wardrobe.find(id = current_user.id)
-  #   render json:wardrobe
-  # end
-
   def index
     if params[:authentication_token] != nil
       if User.find_by_authentication_token(authentication_token = params[:authentication_token])
@@ -55,7 +50,18 @@ class Api::V1::WardrobeController < Api::ApiController
       v = `java NaiveAlgo #{params[:color].downcase.capitalize} #{params[:style].downcase.capitalize}`
       logger.info("Successful connection to Naive Algorithm.")
       render :status => 200,
-             :json => v
+             :json => create_match_json(v.split(",\n"), params[:style])
     end
+  end
+
+  private
+  def create_match_json(array, style)
+    @json = {"original_clothing_category" => style,
+            "outfit_pairings"=> []
+            }
+    array.each do |matches|
+      @json["outfit_pairings"] << {"top" => matches.split(",").first, "bottom" => matches.split(",").second}
+    end
+    return @json
   end
 end
