@@ -16,7 +16,7 @@ class Api::V1::WardrobeController < Api::ApiController
                :json=>@wardrobe
       else
         logger.info("Failed connection to wardrobe json, a user cannot be found by that authentication_token.")
-        render :status =>200,
+        render :status =>400,
                :json=>{:message=>"Failed wardrobe connection, a user cannot be found by that authentication_token."}
       end
     else
@@ -35,7 +35,7 @@ class Api::V1::WardrobeController < Api::ApiController
         @wardrobe.save!
       else
         logger.info("Failed connection to wardrobe/edit json, a wardrobe cannot be found by that authentication_token.")
-        render :status =>200,
+        render :status =>400,
                :json=>{:message=>"Failed connection to wardrobe/edit json, a wardrobe cannot be found by that authentication_token."}
       end
     else
@@ -47,24 +47,15 @@ class Api::V1::WardrobeController < Api::ApiController
   end
 
   def match
-    if params[:authentication_token] != nil
-      if User.find_by_authentication_token(authentication_token = params[:authentication_token])
-        if params[:color, :style] == nil
-          logger.info("Failed connection to Naive Algo, color and style missing.")
-          render :status =>200,
-                 :json=>{:message=>"Failed connection to Naive Algo, please add the color and style capitalized: ie. Red Bottoms."}
-        else
-        end
-      else
-        logger.info("Failed connection to wardrobe json, a user cannot be found by that authentication_token.")
-        render :status =>200,
-               :json=>{:message=>"Failed wardrobe connection, a user cannot be found by that authentication_token."}
-      end
+    if params[:color] == nil || params[:style] == nil
+      logger.info("Failed connection to Naive Algo, color and style missing.")
+      render :status =>400,
+             :json=>{:message=>"Failed connection to Naive Algo, please add the color and style capitalized: ie. Red Bottoms."}
     else
-      logger.info("Failed connection to wardrobe json, no authentication token posted.")
-      render :status=>400,
-            :json=>{:message=>"Did you add the user's authentication_token?"}
-      return
+      v = `java NaiveAlgo #{params[:color].downcase.capitalize} #{params[:style].downcase.capitalize}`
+      logger.info("Successful connection to Naive Algorithm.")
+      render :status => 200,
+             :json => v
     end
   end
 end
